@@ -1,6 +1,7 @@
 package com.srms.managers;
 
 import com.srms.models.Student;
+import com.srms.models.GraduateStudent;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -65,4 +66,21 @@ public class ReportManager {
         double avg = sum / list.size();
         System.out.println("Average GPA: " + avg);
     }
+    //listGraduateStudents
+public void listGraduateStudents() {
+    List<GraduateStudent> grads = manager.getAllGraduatStudents();
+
+    if (grads.isEmpty()) {
+        System.out.println("No graduate students found.");
+        return;
+    }
+
+    System.out.println("\n--- Graduate Students ---");
+
+    for (GraduateStudent g : grads) {
+        System.out.println(g.getId() + " - " + g.getName());
+    }
+}
+
+
 }
