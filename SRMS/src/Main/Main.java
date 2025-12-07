@@ -20,12 +20,13 @@ public class Main {
         
         while (true) {
             System.out.println("\n1- Add Student");
-            System.out.println("2- Update GPA");
-            System.out.println("3- Delete Student");
-            System.out.println("4- Load File");
-            System.out.println("5- Save File");
-            System.out.println("6- Generate Reports");
-            System.out.println("7- Exit");
+            System.out.println("2- Add GraduateStudent");
+            System.out.println("3- Update GPA");
+            System.out.println("4- Delete Student");
+            System.out.println("5- Load File");
+            System.out.println("6- Save File");
+            System.out.println("7- Generate Reports");
+            System.out.println("8- Exit");
             System.out.print("Choose: ");
 
             int ch = sc.nextInt();
@@ -33,7 +34,7 @@ public class Main {
 
             try {
                 switch (ch) {
-                    case 1:
+                    case 1:// Add normal student
                         System.out.print("ID: ");
                         String id = sc.nextLine();
                         System.out.print("Name: ");
@@ -46,7 +47,26 @@ public class Main {
                         manager.addStudent(new Student(id, name, dept, gpa));
                         break;
 
+                    // Add Graduate Student
                     case 2:
+                        System.out.print("ID: ");
+                        String gid = sc.nextLine();
+                        System.out.print("Name: ");
+                        String gname = sc.nextLine();
+                        System.out.print("Department: ");
+                        String gdept = sc.nextLine();
+                        System.out.print("GPA: ");
+                        double ggpa = sc.nextDouble();
+                        sc.nextLine(); // consume
+                        System.out.print("Thesis Title: ");
+                        String thesis = sc.nextLine();
+                        System.out.print("Supervisor: ");
+                        String supervisor = sc.nextLine();
+
+                        manager.addGraduatSStudent(
+                                new GraduateStudent(gid, gname, gdept, ggpa, thesis, supervisor));
+                        break;
+                    case 3:
                         System.out.print("ID to update: ");
                         id = sc.nextLine();
                         System.out.print("New GPA: ");
@@ -54,49 +74,53 @@ public class Main {
                         manager.updateStudent(id,gpa);
                         break;
 
-                    case 3:
+                    case 4:
                         System.out.print("ID to delete: ");
                         id = sc.nextLine();
                         manager.deleteStudent(id);
                         break;
 
-                    case 4:
+                    case 5:
                         manager.loadFromFile("data/students.csv");
                         System.out.println("Loaded.");
                         break;
 
-                    case 5:
+                    case 6:
                         manager.saveToFile("data/students.csv");
                         System.out.println("Saved.");
                         break;
 
-                    case 6:
+                    case 7:
                         System.out.println("\n--- Report Menu ---");
                         System.out.println("1- Report By GPA (Highest to Lowest)");
                         System.out.println("2- Top 3 Students");
                         System.out.println("3- Calculate Average GPA");
-                        System.out.println("4- Back to Main Menu");
+                        System.out.println("4- List Graduate Students");
+                        System.out.println("5- Back to Main Menu");
                         System.out.print("Choose Report: ");
-                        int reportCh = sc.nextInt();
+
+                        int r = sc.nextInt();
                         sc.nextLine();
-                        manager.reportByGPA();
-                        switch (reportCh) {
+
+                        switch (r) {
                             case 1:
                                 report.reportByGPA();
+                                        
                                 break;
                             case 2:
-                                report.top3Students(); 
+                                report.top3Students();
                                 break;
                             case 3:
-                                report.averageGPA(); 
+                                report.averageGPA();
                                 break;
                             case 4:
+                                report.listGraduateStudents();
                                 break;
-                            default:
-                                System.out.println("Invalid report option.");
+                            case 5:
+                                break;
                         }
                         break;
-                    case 7:
+                    case 8:
                         System.exit(0);
                 }
             } catch (Exception e) {
@@ -105,4 +129,3 @@ public class Main {
         }
     }
 }
-
