@@ -35,7 +35,7 @@ public class RecordManager {
     public boolean deleteStudent(String id) {
         return students.removeIf(s -> s.getId().equals(id));
     }
-
+//to find student  ود ضيفيها بالماين
     public Student findById(String id) {
        for (Student s : students) {
         if (s.getId().equals(id)) return s;
@@ -88,5 +88,6 @@ public class RecordManager {
     }
 
 }
+
 
 
