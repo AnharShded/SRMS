@@ -5,7 +5,6 @@ import com.srms.models.GraduateStudent;
 import com.srms.managers.RecordManager;
 import com.srms.managers.ReportManager;
 import com.srms.threads.AutoSaveThread;
-//import com.srms.utils.FileUtils;
 
 public class Main {
     public static void main(String[] args) {
@@ -67,7 +66,7 @@ public class Main {
                         break;
 
                     case 5:
-                        manager.saveToFile("data/students.csv1");
+                        manager.saveToFile("data/students.csv");
                         System.out.println("Saved.");
                         break;
 
@@ -106,3 +105,4 @@ public class Main {
         }
     }
 }
+
